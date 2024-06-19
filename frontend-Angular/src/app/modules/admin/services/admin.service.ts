@@ -32,6 +32,17 @@ export class AdminService {
     });
   }
 
+  getStudentById(studentId: number): Observable<any> {
+    return this.http.get<[]>(basic_url + `api/admin/student/${studentId}`, {
+      headers: this.createAuthorizationHeader()
+    });
+  }
+
+  // updateStudent(studentDto: any): Observable<any> {
+  //   return this.http.put(basic_url + "api/admin/student/" + studentDto.id, studentDto, {
+  //     headers: this.createAuthorizationHeader()
+  //   });
+  // }
 
   private createAuthorizationHeader(): HttpHeaders {
     let authHeaders: HttpHeaders = new HttpHeaders();

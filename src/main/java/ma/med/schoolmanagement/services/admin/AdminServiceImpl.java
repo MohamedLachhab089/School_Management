@@ -1,6 +1,7 @@
 package ma.med.schoolmanagement.services.admin;
 
 import jakarta.annotation.PostConstruct;
+import ma.med.schoolmanagement.dtos.SingleStudentDto;
 import ma.med.schoolmanagement.dtos.StudentDto;
 import ma.med.schoolmanagement.entities.User;
 import ma.med.schoolmanagement.enums.UserRole;
@@ -60,5 +61,16 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void deleteStudent(Long studentId) {
         userRepo.deleteById(studentId);
+    }
+
+    @Override
+    public SingleStudentDto getStudentById(Long studentId) {
+        Optional<User> optionalUser = userRepo.findById(studentId);
+        if (optionalUser.isPresent()) {
+            SingleStudentDto singleStudentDto = new SingleStudentDto();
+            singleStudentDto.setStudentDto(optionalUser.get().getStudentDto());
+            return singleStudentDto;
+        }
+        return null;
     }
 }

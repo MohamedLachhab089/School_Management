@@ -14,12 +14,14 @@ import {MatButton, MatButtonModule} from "@angular/material/button";
 import {HttpClientModule} from "@angular/common/http";
 import { AllStudentsComponent } from './all-students/all-students.component';
 import {MatCardModule} from "@angular/material/card";
+import { UpdateStudentComponent } from './update-student/update-student.component';
 
 
 @NgModule({
   declarations: [
     PostStudentComponent,
-    AllStudentsComponent
+    AllStudentsComponent,
+    UpdateStudentComponent
   ],
   imports: [
     CommonModule,

@@ -1,5 +1,6 @@
 package ma.med.schoolmanagement.services.admin;
 
+import ma.med.schoolmanagement.dtos.SingleStudentDto;
 import ma.med.schoolmanagement.dtos.StudentDto;
 
 import java.util.List;
@@ -10,4 +11,6 @@ public interface AdminService {
     List<StudentDto> getAllStudents();
 
     void deleteStudent(Long studentId);
+
+    SingleStudentDto getStudentById(Long studentId);
 }

@@ -1,5 +1,6 @@
 package ma.med.schoolmanagement.controllers;
 
+import ma.med.schoolmanagement.dtos.SingleStudentDto;
 import ma.med.schoolmanagement.dtos.StudentDto;
 import ma.med.schoolmanagement.services.admin.AdminService;
 import org.springframework.http.HttpStatus;
@@ -19,7 +20,7 @@ public class AdminController {
     }
 
     @PostMapping("/student")
-    public ResponseEntity<?> addStudent(@RequestBody StudentDto studentDto){
+    public ResponseEntity<?> addStudent(@RequestBody StudentDto studentDto) {
         StudentDto createStudentDto = adminService.postStudent(studentDto);
         if (createStudentDto == null) {
             return new ResponseEntity<>("Something went wrong", HttpStatus.BAD_REQUEST);
@@ -28,15 +29,24 @@ public class AdminController {
     }
 
     @GetMapping("/students")
-    public ResponseEntity<List<StudentDto>> getAllStudents(){
+    public ResponseEntity<List<StudentDto>> getAllStudents() {
         List<StudentDto> allStudents = adminService.getAllStudents();
         return ResponseEntity.ok(allStudents);
     }
 
     @DeleteMapping("/student/{studentId}")
-    public ResponseEntity<Void> deleteStudent(@PathVariable Long studentId){
+    public ResponseEntity<Void> deleteStudent(@PathVariable Long studentId) {
         adminService.deleteStudent(studentId);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/student/{studentId}")
+    public ResponseEntity<SingleStudentDto> getStudentById(@PathVariable Long studentId) {
+        SingleStudentDto singleStudentDto = adminService.getStudentById(studentId);
+        if (singleStudentDto == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(singleStudentDto);
     }
 
 }
