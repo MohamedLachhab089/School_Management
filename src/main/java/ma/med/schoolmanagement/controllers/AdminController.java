@@ -1,5 +1,6 @@
 package ma.med.schoolmanagement.controllers;
 
+import ma.med.schoolmanagement.dtos.FeeDto;
 import ma.med.schoolmanagement.dtos.SingleStudentDto;
 import ma.med.schoolmanagement.dtos.StudentDto;
 import ma.med.schoolmanagement.services.admin.AdminService;
@@ -48,5 +49,33 @@ public class AdminController {
         }
         return ResponseEntity.ok(singleStudentDto);
     }
+
+    @PutMapping("/student/{studentId}")
+    public ResponseEntity<?> updateStudent(@PathVariable Long studentId, @RequestBody StudentDto studentDto) {
+        StudentDto updatedStudentDto = adminService.updateStudent(studentId, studentDto);
+        if (updatedStudentDto == null) {
+            return new ResponseEntity<>("Something went wrong", HttpStatus.BAD_REQUEST);
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(updatedStudentDto);
+    }
+
+    /*@PostMapping("/fee/{studentId}")
+    public ResponseEntity<?> payFee(@PathVariable Long studentId, @RequestBody FeeDto feeDto) {
+        FeeDto paidFeeDto = adminService.payFee(studentId, feeDto);
+        if (paidFeeDto == null) {
+            return new ResponseEntity<>("Something went wrong", HttpStatus.BAD_REQUEST);
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(paidFeeDto);
+    }*/
+
+    @PostMapping("/fee/{studentId}")
+    public ResponseEntity<?> payFee(@PathVariable Long studentId, @RequestBody FeeDto feeDto) {
+        FeeDto paidFeeDto = adminService.payFee(studentId, feeDto);
+        if (paidFeeDto == null) {
+            return new ResponseEntity<>("Something went wrong", HttpStatus.BAD_REQUEST);
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(paidFeeDto);
+    }
+
 
 }

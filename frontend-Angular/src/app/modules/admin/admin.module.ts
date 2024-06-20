@@ -15,13 +15,15 @@ import {HttpClientModule} from "@angular/common/http";
 import { AllStudentsComponent } from './all-students/all-students.component';
 import {MatCardModule} from "@angular/material/card";
 import { UpdateStudentComponent } from './update-student/update-student.component';
+import { PayFeeComponent } from './pay-fee/pay-fee.component';
 
 
 @NgModule({
   declarations: [
     PostStudentComponent,
     AllStudentsComponent,
-    UpdateStudentComponent
+    UpdateStudentComponent,
+    PayFeeComponent
   ],
   imports: [
     CommonModule,

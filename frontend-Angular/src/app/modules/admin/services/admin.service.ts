@@ -38,11 +38,17 @@ export class AdminService {
     });
   }
 
-  // updateStudent(studentDto: any): Observable<any> {
-  //   return this.http.put(basic_url + "api/admin/student/" + studentDto.id, studentDto, {
-  //     headers: this.createAuthorizationHeader()
-  //   });
-  // }
+  updateStudent(studentId: number, studentDto: any): Observable<any> {
+    return this.http.put<[]>(basic_url + `api/admin/student/${studentId}`, studentDto, {
+      headers: this.createAuthorizationHeader()
+    });
+  }
+
+  payFee(studentId: number, feeDto: any): Observable<any> {
+    return this.http.post<any>(basic_url + `api/admin/fee/${studentId}`, feeDto, {
+      headers: this.createAuthorizationHeader()
+    });
+  }
 
   private createAuthorizationHeader(): HttpHeaders {
     let authHeaders: HttpHeaders = new HttpHeaders();
@@ -50,4 +56,5 @@ export class AdminService {
       'Authorization', "Bearer " + this.storage.getToken()
     )
   }
+
 }

@@ -2,7 +2,7 @@
   <mat-spinner *ngIf="isSpinning" [diameter]="50" class="spinner"></mat-spinner>
   <div class="form-container" *ngIf="!isSpinning">
     <h1 class="form-title">Update Student</h1>
-    <form class="login-form" [formGroup]="validateForm">
+    <form class="login-form" [formGroup]="validateForm" (ngSubmit)="onSubmit()">
       <div class="form-row">
         <mat-form-field appearance="outline" class="form-field">
           <mat-label>Name</mat-label>
@@ -76,7 +76,7 @@
         </mat-form-field>
       </div>
 
-      <button mat-raised-button type="submit" [disabled]="validateForm.invalid" class="submit-button" [ngClass]="{'disabled-button': validateForm.invalid}">Add Student</button>
+      <button mat-raised-button type="submit" [disabled]="validateForm.invalid" class="submit-button" [ngClass]="{'disabled-button': validateForm.invalid}">Update Student</button>
     </form>
   </div>
 </div>
